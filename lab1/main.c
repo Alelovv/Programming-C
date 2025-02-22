@@ -6,11 +6,7 @@
 int main(int argc, char *argv[]) {
 	double a, b, c;
 	double x1, x2, d;
-/*	
-	a = 1.2;
-	b = 10.5;
-	c = 3.3;
-*/
+
 	printf("Vvedite a:");
 	scanf("%lf", &a);
 	printf("Vvedite b:");
