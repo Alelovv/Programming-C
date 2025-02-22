@@ -1,39 +1,45 @@
 #include <stdio.h>
-int main(){
-double x1, y1, z1;
-double x2, y2, z2;
-double x3, y3, z3;
-
-printf("Vvedite 1 stroku: ");
-scanf("%lf %lf %lf", &x1, &y1, &z1);
-
-printf("Vvedite 2 stroku: ");
-scanf("%lf %lf %lf", &x2, &y2, &z2);
-
-printf("Vvedite 3 stroku: ");
-scanf("%lf %lf %lf", &x3, &y3, &z3);
-
-printf("Summa glavnoi: %lf\n", x1 + y2 + z3);
-printf("Summa bobochnoi: %lf\n", z1 + y2 + x3);
-
-int c1, c2;
-int v1, v2;
-
-printf("Vvedite 1 stroku: ");
-scanf("%d %d", &c1, &c2);
-
-printf("Vvedite 2 stroku: ");
-scanf("%d %d", &v1, &v2);
-
-int r1 = c1 * c1 + c2 * v1;
-int r2 = c1 * c2 + c2 * v2;
-int r3 = v1 * c1 + v2 * v1;
-int r4 = v1 * c2 + v2 * v2;
-
-printf("Kvadrat matrx:\n");
-printf("%d %d\n", r1, r2);
-printf("%d %d\n", r3, r4);
+#include <stdlib.h>
 
 
-return 0;
+int main(int argc, char *argv[]) {
+	
+	double M[3][3];
+	
+	int i,j;
+	
+	for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+            printf("Vvedite element [%d][%d]: ", i, j);
+            scanf("%lf", &M[i][j]);
+        }
+    }
+	printf("Summa glavnoi: %lf", M[0][0] + M[1][1] + M[2][2]);
+	printf("Summa pobochnoi: %lf\n", M[0][2] + M[1][1] + M[2][0]);
+
+	int F[2][2];
+	int p1, p2;
+	for (p1 = 0; p1 < 2; p1++){
+		for (p2 = 0; p2 < 2; p2++){
+		printf("Vvedite element [%d][%d]:", p1, p2);
+		scanf("%d", &F[p1][p2]);
+		}
+	}
+    int s[2][2];
+    s[0][0] = F[0][0] * F[0][0] + F[0][1] * F[1][0];
+    s[0][1] = F[0][0] * F[0][1] + F[0][1] * F[1][1];
+    s[1][0] = F[1][0] * F[0][0] + F[1][1] * F[1][0];
+    s[1][1] = F[1][0] * F[0][1] + F[1][1] * F[1][1];
+    
+    printf("Kvadrat matrix:\n");
+    for (p1 = 0; p1 < 2; p1++) {
+        for (p2 = 0; p2 < 2; p2++) {
+            printf("%d ", s[p1][p2]);
+        }
+        printf("\n");
+    }	
+	
+		
+	
+	return 0;
 }
