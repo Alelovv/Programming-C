@@ -40,7 +40,6 @@ int main(int argc, char *argv[]) {
 		
 		printf("Continue? (Y) - yes\n");
 		scanf(" %c", &f);
-		printf("%c", f);
 		
 	}
 	while (f == 'Y');
