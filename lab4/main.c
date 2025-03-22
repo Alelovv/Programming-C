@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <stdbool.h>
+#include 'triangle.h'
+
 
 void triangle(){
 	double x, y, z;
@@ -13,12 +16,9 @@ void triangle(){
 	
 	printf("Input 3 Side:\n");
 	scanf("%lf", &z);
-	if (x <= 0 || y <= 0 || z <= 0) {
-        printf("ERROR");
-        return;
-    }
+
 	
-	if ((x + y > z ) && (x + z > y) && (z + y > x)){
+	if (proverka(x,y,z)){
 		P = x + y + z;
 		p = P/2;
 		S = sqrt(p * (p - x)*(p - y)*(p - z));
@@ -28,6 +28,7 @@ void triangle(){
 		printf("ERROR");
 	}
 }
+
 
 
 int main(int argc, char *argv[]) {
