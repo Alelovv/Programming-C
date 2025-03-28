@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "Funcs.h"
 
 double** operations(double **M1, double **M2, int n){
 	char c;
