@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "Funcs.h"
 
 int main(int argc, char *argv[]) {
 	double **M1, **M2, **Rez;
@@ -25,7 +26,15 @@ int main(int argc, char *argv[]) {
 			scanf("%lf", &M1[i][j]);
 		}
 	}
+	double **Rez = operations(M1, M2, n);
 	
+	printf("Result:\n");
+	for (i = 0; i < n; i++){
+		for (j = 0; j < n; j++){
+			
+			printf("%lf %lf", Rez[i], Rez[j]);
+		}
+	}
 	
 	return 0;
 }
