@@ -5,6 +5,8 @@
 int main(int argc, char *argv[]) {
 	double **M1, **M2;
 	int n, i, j;
+	char option;
+	double **Rez;
 	printf("input size:\n");
 	scanf("%d", &n);
 	
@@ -35,7 +37,21 @@ int main(int argc, char *argv[]) {
 		}
 	}
 	
-	double **Rez = operations(M1, M2, n);
+	printf("input option: (+) (-) (*):\n");
+	scanf(" %c", &option);
+		if (option == '+'){
+			Rez = summ(M1, M2, n);
+			printf("summ");
+		}
+		if (option == '-'){
+			Rez = subt(M1, M2, n);
+			printf("subt");
+		}
+		if (option == '*'){
+			Rez = mult(M1, M2, n);
+			printf("mult");
+		}
+
 	
 	printf("Result:\n");
 	for (i = 0; i < n; i++){
