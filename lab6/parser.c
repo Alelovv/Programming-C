@@ -24,3 +24,4 @@ int main() {
     fclose(out);
     return 0;
 }
+// fgets(куда, сколько, откуда);
