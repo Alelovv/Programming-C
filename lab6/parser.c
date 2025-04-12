@@ -15,7 +15,7 @@ int main() {
         char f[70], i[70], o[70]; 
         int year;
         sscanf(s, "%s %s %s %d", f, i, o, &year);
-        if (year > 1980) {
+        if (f[0] == "À") {
             fprintf(out, "%s", s);
         }
     }
