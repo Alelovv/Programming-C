@@ -6,4 +6,4 @@ struct Human {
 	char surname[30];
 	int year;
 };
-
+ş
