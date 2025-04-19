@@ -1,0 +1,71 @@
+#include <stdio.h>
+#include <string.h>
+
+struct Person {
+    char last_name[20];
+    char first_name[20];
+    int year;
+    char gender;
+    float height;
+};
+
+int main() {
+    FILE *f = fopen("text.txt", "r");
+    if (f == NULL) {
+        printf("File error!\n");
+        return 1;
+    }
+
+    struct Person p[100];
+    int n = 0;
+    
+    // Читаем из файла
+    while (fscanf(f, "%s %s %d %c %f", 
+           p[n].last_name, 
+           p[n].first_name, 
+           &p[n].year, 
+           &p[n].gender, 
+           &p[n].height) == 5) {
+        n++;
+        if (n >= 100) break;
+    }
+    fclose(f);
+
+    // Выбираем поле для сортировки
+    printf("Sort by:\n");
+    printf("1 - Last name\n2 - First name\n3 - Year\n4 - Gender\n5 - Height\n");
+    int choice;
+    scanf("%d", &choice);
+
+    // Простая сортировка пузырьком
+    for (int i = 0; i < n-1; i++) {
+        for (int j = 0; j < n-i-1; j++) {
+            int swap = 0;
+            
+            if (choice == 1 && strcmp(p[j].last_name, p[j+1].last_name) > 0) swap = 1;
+            else if (choice == 2 && strcmp(p[j].first_name, p[j+1].first_name) > 0) swap = 1;
+            else if (choice == 3 && p[j].year > p[j+1].year) swap = 1;
+            else if (choice == 4 && p[j].gender > p[j+1].gender) swap = 1;
+            else if (choice == 5 && p[j].height > p[j+1].height) swap = 1;
+            
+            if (swap) {
+                struct Person temp = p[j];
+                p[j] = p[j+1];
+                p[j+1] = temp;
+            }
+        }
+    }
+
+    // Вывод результата
+    printf("\nSorted list:\n");
+    for (int i = 0; i < n; i++) {
+        printf("%s %s %d %c %.2f\n", 
+               p[i].last_name, 
+               p[i].first_name, 
+               p[i].year, 
+               p[i].gender, 
+               p[i].height);
+    }
+
+    return 0;
+}
