@@ -32,7 +32,7 @@ int main() {
     fclose(f);
 
     if (n == 0) {
-        printf("Файл пуст или данные некорректны!\n");
+        printf("Error!\n");
         return 1;
     }
 
@@ -42,7 +42,7 @@ int main() {
     scanf("%d", &choice);
 
     for (i = 0; i < n-1; i++) {
-        for (j = 0; j < n-i-1; j++) {
+        for (j = 0; j < n-i; j++) {
             int swap = 0;
             
             switch(choice) {
@@ -56,7 +56,7 @@ int main() {
                     if (p[j].year > p[j+1].year) swap = 1;
                     break;
                 case 4:
-                    if (p[j].gender > p[j+1].gender) swap = 1;
+                    if (strcmp(p[j].gender, p[j+1].gender) > 0) swap = 1;
                     break;
                 case 5:
                     if (p[j].height > p[j+1].height) swap = 1; 

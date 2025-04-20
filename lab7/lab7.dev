@@ -51,17 +51,17 @@ AutoIncBuildNr=0
 SyncProduct=1
 
 [Unit1]
-FileName=main.c
-CompileCpp=0
+FileName=human.txt
 Folder=
-Compile=1
-Link=1
+Compile=0
+Link=0
 Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
 [Unit2]
-FileName=human.txt
+FileName=main.c
+CompileCpp=0
 Folder=
 Compile=1
 Link=1

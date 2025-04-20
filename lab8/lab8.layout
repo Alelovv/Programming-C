@@ -7,8 +7,8 @@ CursorRow=48
 TopLine=33
 LeftChar=1
 [Editor_1]
-CursorCol=1
-CursorRow=12
+CursorCol=24
+CursorRow=52
 TopLine=27
 LeftChar=1
 [Editor_2]
@@ -19,5 +19,10 @@ LeftChar=1
 [Editor_5]
 CursorCol=27
 CursorRow=15
+TopLine=1
+LeftChar=1
+[Editor_3]
+CursorCol=1
+CursorRow=25
 TopLine=1
 LeftChar=1
