@@ -21,7 +21,7 @@ int main() {
     struct Person p[100];
     int n = 0;
     int i, j;
-    while (n < 100 && fscanf(f, "%s %s %d %c %d", 
+    while (fscanf(f, "%s %s %d %c %d", 
            p[n].last_name, 
            p[n].first_name, 
            &p[n].year, 
