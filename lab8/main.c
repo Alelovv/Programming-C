@@ -11,6 +11,7 @@ struct Person {
 };
 
 int main() {
+	int buffer[100];
 	char *locale = setlocale(LC_ALL, "");
     FILE *f = fopen("text.txt", "r");
     if (f == NULL) {
@@ -21,16 +22,16 @@ int main() {
     struct Person p[100];
     int n = 0;
     int i, j;
-    while (fscanf(f, "%s %s %d %c %d", 
+	while(fgets(buffer, sizeof(buffer), f) != NULL){
+	n++;
+	fscanf(f, "%s %s %d %c %d", 
            p[n].last_name, 
            p[n].first_name, 
            &p[n].year, 
            &p[n].gender, 
-           &p[n].height) == 5) {
-        n++;
-    }
-    fclose(f);
-
+           &p[n].height);
+	}
+	fclose(f);
     if (n == 0) {
         printf("Error!\n");
         return 1;
@@ -47,19 +48,29 @@ int main() {
             
             switch(choice) {
                 case 1: 
-                    if (strcmp(p[j].last_name, p[j+1].last_name) > 0) swap = 1;
+                    if (strcmp(p[j].last_name, p[j+1].last_name) > 0){
+					swap = 1;
+					}
                     break;
                 case 2:
-                    if (strcmp(p[j].first_name, p[j+1].first_name) > 0) swap = 1;
+                    if (strcmp(p[j].first_name, p[j+1].first_name) > 0) {
+					swap = 1;
+					}
                     break;
                 case 3:
-                    if (p[j].year > p[j+1].year) swap = 1;
+                    if (p[j].year > p[j+1].year) {
+					swap = 1;
+					}
                     break;
                 case 4:
-                    if (strcmp(p[j].gender, p[j+1].gender) > 0) swap = 1;
+                    if ((p[j].gender > p[j+1].gender)) 
+					{swap = 1;
+					}
                     break;
                 case 5:
-                    if (p[j].height > p[j+1].height) swap = 1; 
+                    if (p[j].height > p[j+1].height){
+					swap = 1;
+					} 
                     break;
             }
             
@@ -70,7 +81,7 @@ int main() {
             }
         }
     }
-    printf("\nresult:\n");
+    printf("result:\n");
     for (i = 0; i < n; i++) {
         printf("%s %s %d %c %d\n", 
                p[i].last_name, 
