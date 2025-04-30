@@ -30,7 +30,7 @@ int main(int argc, char *argv[]) {
     char path[1024];
 
     if (argc < 2) {
-        printf("Directory 'texts' not found\n");
+        printf("Directory not found\n");
         exit(1);
     }
 
@@ -75,7 +75,7 @@ int main(int argc, char *argv[]) {
     out_freq = fopen("dict_freq.txt", "w");
     if (out_alpha == NULL || out_freq == NULL) {
         printf("Unable to create output files\n");
-        exit(1);
+        return 0;
     }
 
     qsort(words, total_words, sizeof(WORD *), cmpword_alpha);
@@ -103,22 +103,9 @@ void add_word(char *word) {
         }
     }
 
-    if (total_words >= 100000) {
-        printf("Maximum dictionary size exceeded\n");
-        return;
-    }
-
     WORD *new_word = (WORD *)malloc(sizeof(WORD));
-    if (new_word == NULL) {
-        printf("Memory allocation error\n");
-        exit(1);
-    }
 
     new_word->word = strdup(word);
-    if (new_word->word == NULL) {
-        printf("Memory allocation error\n");
-        exit(1);
-    }
 
     new_word->count = 1;
     words[total_words++] = new_word;
