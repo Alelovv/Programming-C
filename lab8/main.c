@@ -11,7 +11,7 @@ struct Person {
 };
 
 int main() {
-	int buffer[100];
+	char buffer[100];
 	char *locale = setlocale(LC_ALL, "");
     FILE *f = fopen("text.txt", "r");
     if (f == NULL) {
@@ -68,7 +68,7 @@ int main() {
 					}
                     break;
                 case 5:
-                    if (p[j].height > p[j+1].height){
+                    if (p[j].height < p[j+1].height){
 					swap = 1;
 					} 
                     break;
