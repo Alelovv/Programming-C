@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 #define input \
-int n, i; \
+int n, i, j; \
 double digits[100]; \
 printf("Input number of digits:\n"); \
 scanf("%d", &n); \
@@ -10,10 +10,7 @@ for(i = 0; i < n; i++){ \
 	double d; \
 	scanf("%lf", &d); \
 	digits[i] = d; \
-	}
-
-#define output(digits, n) \
-int j; \
+	}\
 for(i = 0; i < n; i++){ \
 	for(j = 0; j < n-i-1; j++){ \
 		if(digits[j] < digits[j+1]){ \
@@ -26,6 +23,6 @@ for(i = 0; i < n; i++){ \
 printf("%lf", digits[0]);
 
 int main(int argc, char *argv[]) {
-    input; output(digits, n)
+    input;
     return 0;
 }
