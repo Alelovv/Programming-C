@@ -20,7 +20,13 @@ for(i = 0; i < n; i++){ \
 			} \
 		} \
 	} \
-printf("%lf", digits[0]);
+printf("%lf\n", digits[0]);\
+double rez = 0;\
+for (i = 0; i < n; i++){\
+	rez += digits[i];\
+}\
+rez /= n;\
+printf("%lf", rez);
 
 int main(int argc, char *argv[]) {
     input;
