@@ -29,7 +29,7 @@ int main() {
         }
     }
 
-    printf("Результат: %g\n", result);
+    printf("/n Результат: %g\n", result);
     return 0;
 }
 
