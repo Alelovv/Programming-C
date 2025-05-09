@@ -1,43 +1,34 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>  
+#include <string.h>
 #include <locale.h>
+
 int main() {
-	char *locale = setlocale(LC_ALL, "");
-    char str[256]; 
-    printf("Введите выражение: ");
-    fgets(str, sizeof(str), stdin);
+	char locale = setlocale(LC_ALL, "");
+    char expr[100];
+    char* token;
+    double num;
+    double result = 0;
+    char op = '+';
 
-    double result = 0.0;
-    char *sep = str;  
-    char *end;   
-    int first = 1;    
+    printf("Введите выражение:\n ");
+    fgets(expr, 100, stdin);
+    
+    expr[strlen(expr)-1] = '\0';
 
-    while (*sep) {
-        while (isspace(*sep)) sep++;
-        if (!*sep) break;
-
-        if (first) {
-            result = strtod(sep, &end);
-            sep = end;
-            first = 0;
-        } else {
-            char op = *sep++;
-            double num = strtod(sep, &end);
-            sep = end;
-            result += (op == '+' ? num : -num);  
-        }
+    token = strtok(expr, "+-");
+    
+    while (token != NULL) {
+        num = atof(token);
+        
+        if (op == '+') result += num;
+        else result -= num;
+        
+        op = expr[token - expr + strlen(token)];
+        
+        token = strtok(NULL, "+-");
     }
-
-    printf("/n Результат: %g\n", result);
+    
+    printf("Результат: %.2f\n", result);
     return 0;
 }
-
-
-
-
-
-
-
-
-
