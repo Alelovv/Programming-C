@@ -51,7 +51,17 @@ AutoIncBuildNr=0
 SyncProduct=1
 
 [Unit2]
-FileName=functions.c
+FileName=func.c
+CompileCpp=0
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit3]
+FileName=func.h
 CompileCpp=0
 Folder=
 Compile=1
@@ -62,16 +72,6 @@ BuildCmd=
 
 [Unit1]
 FileName=main.c
-CompileCpp=0
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit3]
-FileName=functions.h
 CompileCpp=0
 Folder=
 Compile=1
