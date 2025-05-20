@@ -3,16 +3,6 @@
 #include <time.h>
 #include <locale.h>
 
-int check_leap(int yr) {
-    int res;
-    res = 0;
-    if (yr % 4 == 0) {
-        if (yr % 100 != 0) res = 1;
-        if (yr % 400 == 0) res = 1;
-    }
-    return res;
-}
-
 int count_month_days(int m, int yr) {
     int d;
     d = 31;
@@ -21,7 +11,7 @@ int count_month_days(int m, int yr) {
     if (m == 9) d = 30;
     if (m == 11) d = 30;
     if (m == 2) {
-        if (check_leap(yr)) d = 29;
+        if (yr % 4 == 0) d = 29;
         else d = 28;
     }
     return d;
@@ -68,11 +58,8 @@ void display_month(int yr, int m) {
     int start, max_days, curr, spaces;
     show_month(m);
     printf(" %d\n", yr);
-    if (check_leap(yr)){
-    	printf("(высокосный год)\n");
-	}
     printf("ПН ВТ СР ЧТ ПТ СБ ВС\n");
-    start = find_day(yr, m, 1);
+    start = find_day(yr, m, 0);
     max_days = count_month_days(m, yr);
     spaces = start;
     curr = 1;
@@ -147,7 +134,6 @@ int main() {
         display_year(yr);
         return 0;
     }
-    printf("Ошибка: неверный формат ввода\n");
+    printf("Ошибка!!!\n");
     return 0;
 }
-//-> разыменовывает tm и обращается к полю tm_year.
