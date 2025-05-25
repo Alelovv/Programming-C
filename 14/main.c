@@ -3,24 +3,29 @@
 
 jmp_buf env;
 
-void fib_sum(int n, int current, long long sum, int a, int b) {
-    if (current > n) {
-        longjmp(env, sum);
+void fibonaci(int count, int *sum, int curr, int next) {
+    if (count <= 0) {
+        longjmp(env, 1); 
     }
-    sum += a;
-    int next = a + b;
-    fib_sum(n, current + 1, sum, b, next);
+
+    *sum += curr;
+    printf("%llu\n", curr);
+    fibonaci(count - 1, sum, next, curr + next);
 }
 
 int main() {
-    int n;
-    printf("Enter number of numbers: ");
-    scanf("%d", &n);
-    int val = setjmp(env);
-    if (val == 0) {
-        fib_sum(n, 1, 0, 1, 1);
+	
+    long count;
+    printf("Input count: ");
+    scanf("%llu", &count);
+
+    long long result = 0;
+
+    if (setjmp(env) == 0) {
+        fibonaci(count, &result, 1, 1);
     } else {
-        printf("Sum: %lld\n", n, (long long)val);
+        printf("Result: %llu\n", result);
     }
+
     return 0;
 }
