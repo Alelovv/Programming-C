@@ -40,17 +40,17 @@ int main() {
     
     int n;
     while (1) {
-        printf("choose signal: (1) - SIGABRT (2) - SIGFPE (3) - SIGILL (4) - SIGINT (5) - SIGSEGV (6) - SIGTERM (7) - Exit\n");
+        printf("choose signal: (1) - SIGABRT (2) - SIGFPE (3) - SIGILL (4) - SIGINT (5) - SIGSEGV (6) - SIGTERM\n");
         scanf("%d", &n);
         switch (n) {
             case 1:
-                abort();
+            	raise(SIGABRT);
+//                abort();
                 break;
             case 2:
                 {
-                    int a = 1, b = 0;
-                    int c = a / b;
-                    (void)c;
+                int a = 23526, b = 0;
+                int c = a / b;
                 }
                 break;
             case 3:
@@ -60,18 +60,18 @@ int main() {
                 raise(SIGINT);
                 break;
             case 5:
-                {
-                    int *ptr = NULL;
-                    *ptr = 42;
-                }
+            	raise(SIGSEGV);
+//                {
+//                int *ptr = NULL;
+//                *ptr = 42;
+//                }
                 break;
             case 6:
                 raise(SIGTERM);
                 break;
-            case 7:
-                exit(0);
             default:
                 printf("ERROR\n");
+                break;
         }
     }
     return 0;
