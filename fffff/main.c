@@ -6,13 +6,15 @@
 int main(int argc, char *argv[]) {
 	FILE *F;
 	FILE *out;
-	int n;
+	int n, g;
 	long long count;
 	long long buf;
 	F = fopen("input.txt", "w");
 	printf("Input size of digits:\n");
 	scanf("%d", &n);
 	count = n;
+	g = n;
+	
 	while(count > 0){
 		long long digits;
 		digits = 1 + rand() % (n);
@@ -22,7 +24,7 @@ int main(int argc, char *argv[]) {
 	fclose(F);
 	F = fopen("input.txt", "r");
 	out = fopen("output.txt", "w");
-	while (fgets(buf, 100, F) != NULL) {
+	while (g > 0) {
         long long f; 
         sscanf(buf, "%llu", &f);
         if (f % 5 == 0){

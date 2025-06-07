@@ -1,0 +1,11 @@
+#!/bin/bash
+rm libmat.a
+
+for i in mat*.c
+ do
+   gcc -c "$i"
+ done
+
+ar rc libmat.a *.o
+
+ranlib libmat.a

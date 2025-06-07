@@ -1,0 +1,10 @@
+#!/bin/bash
+gcc test.c -L. -lmat -lm -otest
+
+if [ $? -eq 0 ]
+  then
+    echo УСПЕШНАЯ КОМПИЛЯЦИЯ... ЗАПУСКАЕМ
+   ./test
+  else
+   echo "БЫЛИ ОШИБКИ (СМОТРИ ВЫШЕ)"
+fi
