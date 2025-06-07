@@ -5,9 +5,10 @@
 
 int main(int argc, char *argv[]) {
 	FILE *F;
+	FILE *out;
 	int n;
 	long long count;
-	double buf[1000];
+	long long buf;
 	F = fopen("input.txt", "w");
 	printf("Input size of digits:\n");
 	scanf("%d", &n);
@@ -15,20 +16,28 @@ int main(int argc, char *argv[]) {
 	while(count > 0){
 		long long digits;
 		digits = 1 + rand() % (n);
-		if (digits % 5 == 0){
-			fprintf(F, "five\n");
-		}
-		else if (digits % 7 == 0){
-			fprintf(F, "seven\n");
-		}
-		else if (digits % 7 == 0 && digits %5 == 0){
-			fprintf(F, "FiveSeven\n");
-		}
-		else{
-			fprintf(F, "%llu\n", digits);
-		}
-		// fprintf(F, "%llu\n", digits);
+		fprintf(F, "%llu\n", digits);
 		count -= 1;
 	}
+	fclose(F);
+	F = fopen("input.txt", "r");
+	out = fopen("output.txt", "w");
+	while (fgets(buf, 100, F) != NULL) {
+        long long f; 
+        sscanf(buf, "%llu", &f);
+        if (f % 5 == 0){
+			fprintf(out, "five\n");
+		}
+		else if (f % 7 == 0){
+			fprintf(out, "seven\n");
+		}
+		else if (f % 7 == 0 && f %5 == 0){
+			fprintf(out, "FiveSeven\n");
+		}
+		else{
+			fprintf(out, "%llu\n", f);
+		}
+    }
+
 	return 0;
 }
