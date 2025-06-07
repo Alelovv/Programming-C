@@ -11,11 +11,12 @@ int main(int argc, char *argv[]) {
 	F = fopen("input.txt", "w");
 	printf("Input size of digits:\n");
 	scanf("%d", &n);
-	count = 0 + rand() % 101;
+	count = n;
 	while(count > 0){
-		double digits;
-		scanf()
-		fprintf(F, "%lf", digits);
+		long long digits;
+		digits = 1 + rand() % (10);
+		fprintf(F, "%llu\n", digits);
+		count -= 1;
 	}
 	return 0;
 }
