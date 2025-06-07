@@ -14,8 +14,20 @@ int main(int argc, char *argv[]) {
 	count = n;
 	while(count > 0){
 		long long digits;
-		digits = 1 + rand() % (10);
-		fprintf(F, "%llu\n", digits);
+		digits = 1 + rand() % (n);
+		if (digits % 5 == 0){
+			fprintf(F, "five\n");
+		}
+		else if (digits % 7 == 0){
+			fprintf(F, "seven\n");
+		}
+		else if (digits % 7 == 0 && digits %5 == 0){
+			fprintf(F, "FiveSeven\n");
+		}
+		else{
+			fprintf(F, "%llu\n", digits);
+		}
+		// fprintf(F, "%llu\n", digits);
 		count -= 1;
 	}
 	return 0;
