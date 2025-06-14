@@ -17,6 +17,24 @@ void multiplyMatrices(int **a, int **b, int **res, int rows, int cols) {
         }
 }
 
+int hasEqualInRowOrCol(int **matrix, int rows, int cols) {
+    // Проверка по строкам
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < cols; j++)
+            for (int k = j + 1; k < cols; k++)
+                if (matrix[i][j] == matrix[i][k])
+                    return 1;
+
+    // Проверка по столбцам
+    for (int j = 0; j < cols; j++)
+        for (int i = 0; i < rows; i++)
+            for (int k = i + 1; k < rows; k++)
+                if (matrix[i][j] == matrix[k][j])
+                    return 1;
+
+    return 0;
+}
+
 int main() {
     int rows, cols;
     printf("Введите количество строк и столбцов: ");
@@ -32,8 +50,8 @@ int main() {
     srand(time(NULL));
     for (int i = 0; i < rows; i++)
         for (int j = 0; j < cols; j++) {
-            matrix1[i][j] = rand() % 100;
-            matrix2[i][j] = rand() % 100;
+            matrix1[i][j] = rand() % 10;
+            matrix2[i][j] = rand() % 10;
         }
 
     FILE *file = fopen("input.txt", "w");
@@ -50,7 +68,7 @@ int main() {
     }
     fclose(file);
 
-    // Освобождаем и пересоздаём для чистоты
+    // Очистка и повторное чтение
     for (int i = 0; i < rows; i++) {
         free(matrix1[i]);
         free(matrix2[i]);
@@ -85,7 +103,6 @@ int main() {
     addMatrices(matrix1, matrix2, sum, rows, cols);
     multiplyMatrices(matrix1, matrix2, product, rows, cols);
 
-    // Поиск минимального элемента и количества нечётных
     int minVal = matrix1[0][0];
     int minIndex = 0;
     int oddCount = 0;
@@ -99,6 +116,9 @@ int main() {
             if (val % 2 != 0)
                 oddCount++;
         }
+
+    int flag1 = hasEqualInRowOrCol(matrix1, rows, cols);
+    int flag2 = hasEqualInRowOrCol(matrix2, rows, cols);
 
     file = fopen("output.txt", "w");
 
@@ -119,9 +139,15 @@ int main() {
     fprintf(file, "\nМинимальный элемент матрицы 1: %d (номер %d)\n", minVal, minIndex);
     fprintf(file, "Количество нечетных чисел в матрице 1: %d\n", oddCount);
 
+    if (flag1)
+        fprintf(file, "\nВ матрице 1 есть строка или столбец с одинаковыми числами.\n");
+    if (flag2)
+        fprintf(file, "В матрице 2 есть строка или столбец с одинаковыми числами.\n");
+    if (!flag1 && !flag2)
+        fprintf(file, "В обеих матрицах нет одинаковых чисел по строкам или столбцам.\n");
+
     fclose(file);
 
-    // Очистка
     for (int i = 0; i < rows; i++) {
         free(matrix1[i]);
         free(matrix2[i]);
