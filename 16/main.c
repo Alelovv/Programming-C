@@ -1,30 +1,44 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <string.h>
 
-/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+typedef unsigned int        u32;
+typedef unsigned long long  u64;
 
-int main(int argc, char *argv[]) {
-	typedef unsigned char      u8;
-	typedef unsigned short int u16;
-	typedef unsigned int       u32;
-	typedef unsigned long long u64;
-	
-	u8 CountOnes1 (u8 n) {
-	 	u8 res = 0;
-		while (n) {
-			res ++;
-		    n &= n-1;  // Забираем младшую единичку.
-		}
-		return res;
-		}
-		
-	u8 CountOnes2_FF (u32 n) {
-    u8 *p = (u8*)&n;
-    n = BitsSetTableFF[p[0]]
-      + BitsSetTableFF[p[1]]
-      + BitsSetTableFF[p[2]]
-      + BitsSetTableFF[p[3]];
-    return n;
-  }
+
+u32 cnt_long(u32 n) {
+	u32 result = 0;
+	while (n) {
+    	result += n & 1;
+    	n >>= 1;
+	}
+	return result;
+}
+
+
+u64 cnt_double(u64 n) {
+	u64 result = 0;
+	while (n) {
+    	result += n & 1;
+    	n >>= 1;
+  	}
+	return result;
+}
+
+int main() {
+	long a;
+	double b;
+
+	printf("Enter long number: ");
+	scanf("%ld", &a);
+	printf("Bits in long: %d\n", cnt_long((u32)a));
+
+	printf("Enter double number: ");
+	scanf("%lf", &b);
+
+	u64 bits;
+	memcpy(&bits, &b, sizeof(double));
+	printf("Bits in double: %llu\n", cnt_double(bits));
+
 	return 0;
 }
+//https://habr.com/ru/articles/276957
